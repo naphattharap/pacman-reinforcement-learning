@@ -59,19 +59,18 @@ class ValueIterationAgent(ValueEstimationAgent):
             # Return list of all states (x,y).
             # ['TERMINAL_STATE', (0, 0), (0, 1), (0, 2), (1, 0), (1, 2), (2, 0), (2, 1), (2, 2), (3, 0), (3, 1), (3, 2)]
             all_states = mdp.getStates()
-            print all_states
-             # For each state, we get all possible actions, skip when action is terminal, no need to calculate.
+            # print all_states
+            # For each state, we get all possible actions, skip when action is terminal, no need to calculate.
             for state in all_states:
-                print 'current state: ', state
+                # print 'current state: ', state
                 
                 state_actions_values = []
                 
                 if mdp.isTerminal(state):
                     continue
-
                 
                 possible_actions = self.mdp.getPossibleActions(state)
-                print 'possible_actions: ', possible_actions
+                # print 'possible_actions: ', possible_actions
                 # For all possible actions which are corresponding to state
                 for action in possible_actions:
                     # Go through all actions for current state and calc Q value
@@ -99,13 +98,13 @@ class ValueIterationAgent(ValueEstimationAgent):
         # Compute Q function for all state action pairs of Q(s, a).
         #  Returns list of (nextState, prob) pairs
         next_state_probs = self.mdp.getTransitionStatesAndProbs(state, action)
-        print 'next state prob of action:', action, ':', next_state_probs
+        # print 'next state prob of action:', action, ':', next_state_probs
         
         q_value = 0;
         for next_state, prob in next_state_probs:
             
             q_value += prob * (self.mdp.getReward(state, action, next_state) + self.discount * self.getValue(next_state))
-            print q_value, "=", prob, "* r(", state, ",", action, ",", next_state, ")-->", self.mdp.getReward(state, action, next_state), " + ", self.discount, "*", self.getValue(next_state)
+            # print q_value, "=", prob, "* r(", state, ",", action, ",", next_state, ")-->", self.mdp.getReward(state, action, next_state), " + ", self.discount, "*", self.getValue(next_state)
             
         return q_value
 
